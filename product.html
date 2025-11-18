@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Product | Sarcasm Mugs</title>
+    <meta name="description" id="pageDescription" content="Shop unique sarcastic mugs with high-quality printing and fast shipping.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-teal': '#4ecdc4',
+                        'brand-yellow': '#f7b731',
+                        'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-brand-orange font-semibold transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                </div>
+                <a href="/cart" class="relative text-gray-700 hover:text-brand-orange transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="max-w-7xl mx-auto px-4 py-12 text-center">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange"></div>
+        <p class="mt-4 text-gray-600">Loading product...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="hidden max-w-7xl mx-auto px-4 py-12 text-center">
+        <div class="text-6xl mb-4">😕</div>
+        <h1 class="text-3xl font-bold mb-4">Product Not Found</h1>
+        <p class="text-gray-600 mb-8">Sorry, we couldn't find the product you're looking for.</p>
+        <a href="/shop" class="inline-block bg-brand-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors">
+            Back to Shop
+        </a>
+    </div>
+
+    <!-- Product Details -->
+    <div id="productContent" class="hidden max-w-7xl mx-auto px-4 py-12">
+        <div class="mb-6">
+            <a href="/shop" class="inline-flex items-center text-brand-orange hover:underline">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Shop
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Product Images -->
+            <div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
+                    <img id="mainImage" src="" alt="" class="w-full h-96 object-cover">
+                </div>
+                <div id="imageGallery" class="grid grid-cols-4 gap-2 hidden">
+                    <!-- Additional images will be loaded here if available -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div>
+                <div id="featuredBadge" class="hidden inline-block bg-yellow-400 text-black px-3 py-1 text-sm font-bold rounded mb-2">
+                    FEATURED
+                </div>
+                
+                <h1 id="productTitle" class="text-4xl font-display font-bold mb-4 text-brand-charcoal"></h1>
+                
+                <div class="flex items-baseline mb-6">
+                    <span id="productPrice" class="text-4xl font-bold text-brand-orange"></span>
+                </div>
+
+                <div id="productDescription" class="text-gray-700 mb-8 leading-relaxed"></div>
+
+                <!-- Variant Selection -->
+                <div id="variantSection" class="mb-8">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Select Size/Color:</label>
+                    <div id="variantOptions" class="space-y-2">
+                        <!-- Variants will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Quantity -->
+                <div class="mb-8">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Quantity:</label>
+                    <div class="flex items-center space-x-4">
+                        <button id="decreaseQty" class="w-10 h-10 rounded-lg border-2 border-gray-300 flex items-center justify-center hover:border-brand-orange transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                            </svg>
+                        </button>
+                        <input type="number" id="quantity" value="1" min="1" class="w-20 text-center border-2 border-gray-300 rounded-lg py-2 focus:outline-none focus:border-brand-orange">
+                        <button id="increaseQty" class="w-10 h-10 rounded-lg border-2 border-gray-300 flex items-center justify-center hover:border-brand-orange transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button id="addToCartBtn" class="w-full bg-brand-orange text-white py-4 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors mb-4">
+                    Add to Cart
+                </button>
+
+                <!-- Product Features -->
+                <div class="border-t pt-6 mt-6">
+                    <h3 class="font-bold mb-4">Product Features:</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Premium ceramic construction</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Dishwasher & microwave safe</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Vibrant, fade-resistant printing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Perfect 11oz capacity</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Fast, reliable shipping</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section id="relatedProducts" class="hidden max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-3xl font-display font-bold text-center mb-12">You Might Also Like</h2>
+        <div id="relatedProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Related products will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
+                    <p class="text-gray-400">Express yourself, one sip at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/shop" class="hover:text-brand-orange transition-colors">All Products</a></li>
+                        <li><a href="/shop?category=dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop?category=work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Learn</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/blog" class="hover:text-brand-orange transition-colors">Blog</a></li>
+                        <li><a href="/#about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sarcasm Mugs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/cart.js"></script>
+    <script>
+        let currentProduct = null;
+        let selectedVariant = null;
+
+        // Get product ID from URL
+        function getProductIdFromURL() {
+            const path = window.location.pathname;
+            const parts = path.split('/');
+            return parts[parts.length - 1] || parts[parts.length - 2];
+        }
+
+        // Load product
+        async function loadProduct() {
+            const productId = getProductIdFromURL();
+            
+            if (!productId || productId === 'product.html') {
+                showError();
+                return;
+            }
+
+            try {
+                const response = await fetch(`${window.location.origin}/api/products/${productId}`);
+                const data = await response.json();
+
+                if (data.success && data.data) {
+                    displayProduct(data.data);
+                } else {
+                    showError();
+                }
+            } catch (error) {
+                console.error('Error loading product:', error);
+                showError();
+            }
+        }
+
+        // Display product
+        function displayProduct(product) {
+            currentProduct = product;
+            
+            // Update page title and meta
+            document.getElementById('pageTitle').textContent = `${product.title} | Sarcasm Mugs`;
+            document.getElementById('pageDescription').content = product.description;
+
+            // Show featured badge if applicable
+            if (product.featured) {
+                document.getElementById('featuredBadge').classList.remove('hidden');
+            }
+
+            // Set main image
+            const mainImage = document.getElementById('mainImage');
+            if (product.images && product.images.length > 0) {
+                mainImage.src = product.images[0].src;
+                mainImage.alt = product.title;
+            }
+
+            // Set product info
+            document.getElementById('productTitle').textContent = product.title;
+            document.getElementById('productPrice').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('productDescription').textContent = product.description;
+
+            // Display variants
+            if (product.variants && product.variants.length > 0) {
+                const variantOptions = document.getElementById('variantOptions');
+                variantOptions.innerHTML = product.variants.map((variant, index) => `
+                    <label class="flex items-center p-3 border-2 rounded-lg cursor-pointer hover:border-brand-orange transition-colors ${index === 0 ? 'border-brand-orange bg-orange-50' : 'border-gray-300'}">
+                        <input type="radio" name="variant" value="${variant.id}" ${index === 0 ? 'checked' : ''} class="mr-3">
+                        <span class="flex-1">${variant.title}</span>
+                        <span class="font-semibold">$${(variant.price / 100).toFixed(2)}</span>
+                    </label>
+                `).join('');
+
+                // Set initial selected variant
+                selectedVariant = product.variants[0];
+
+                // Add variant change listeners
+                document.querySelectorAll('input[name="variant"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        selectedVariant = product.variants.find(v => v.id === e.target.value);
+                        updatePrice();
+                        
+                        // Update visual selection
+                        document.querySelectorAll('input[name="variant"]').forEach(r => {
+                            const label = r.closest('label');
+                            if (r.checked) {
+                                label.classList.add('border-brand-orange', 'bg-orange-50');
+                                label.classList.remove('border-gray-300');
+                            } else {
+                                label.classList.remove('border-brand-orange', 'bg-orange-50');
+                                label.classList.add('border-gray-300');
+                            }
+                        });
+                    });
+                });
+            }
+
+            // Quantity controls
+            document.getElementById('decreaseQty').addEventListener('click', () => {
+                const qtyInput = document.getElementById('quantity');
+                if (qtyInput.value > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
+            });
+
+            document.getElementById('increaseQty').addEventListener('click', () => {
+                const qtyInput = document.getElementById('quantity');
+                qtyInput.value = parseInt(qtyInput.value) + 1;
+            });
+
+            // Add to cart button
+            document.getElementById('addToCartBtn').addEventListener('click', handleAddToCart);
+
+            // Show product, hide loading
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('productContent').classList.remove('hidden');
+            
+            // Load related products
+            loadRelatedProducts(product);
+        }
+
+        // Load related products
+        async function loadRelatedProducts(currentProduct) {
+            try {
+                const response = await fetch(`${window.location.origin}/api/products`);
+                const data = await response.json();
+
+                if (data.success && data.data) {
+                    // Filter products: same category, exclude current product
+                    let related = data.data.filter(p => 
+                        p.id !== currentProduct.id && 
+                        p.category === currentProduct.category
+                    );
+
+                    // If we don't have enough from same category, add other products
+                    if (related.length < 4) {
+                        const others = data.data.filter(p => 
+                            p.id !== currentProduct.id && 
+                            !related.find(r => r.id === p.id)
+                        );
+                        related = [...related, ...others];
+                    }
+
+                    // Limit to 4 products
+                    related = related.slice(0, 4);
+
+                    if (related.length > 0) {
+                        displayRelatedProducts(related);
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading related products:', error);
+            }
+        }
+
+        // Display related products
+        function displayRelatedProducts(products) {
+            const grid = document.getElementById('relatedProductsGrid');
+            
+            grid.innerHTML = products.map(product => `
+                <a href="/product/${product.id}" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="relative">
+                        <img src="${product.images[0]?.src || ''}" alt="${product.title}" class="w-full h-48 object-cover">
+                        ${product.featured ? '<span class="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 text-xs font-bold rounded">FEATURED</span>' : ''}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-brand-orange transition-colors">${product.title}</h3>
+                        <p class="text-2xl font-bold text-brand-orange">$${product.price.toFixed(2)}</p>
+                    </div>
+                </a>
+            `).join('');
+
+            // Show the related products section
+            document.getElementById('relatedProducts').classList.remove('hidden');
+        }
+
+        // Update price based on selected variant
+        function updatePrice() {
+            if (selectedVariant) {
+                document.getElementById('productPrice').textContent = `$${(selectedVariant.price / 100).toFixed(2)}`;
+            }
+        }
+
+        // Handle add to cart
+        function handleAddToCart() {
+            if (!currentProduct || !selectedVariant) return;
+
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const cartItem = {
+                productId: currentProduct.id,
+                variantId: selectedVariant.id,
+                title: currentProduct.title,
+                variant: selectedVariant.title,
+                price: selectedVariant.price / 100,
+                image: currentProduct.images[0]?.src || '',
+                quantity: quantity
+            };
+
+            addToCart(cartItem);
+
+            // Visual feedback
+            const btn = document.getElementById('addToCartBtn');
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Added to Cart!';
+            btn.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Show error state
+        function showError() {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProduct();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarcasm Mugs - For When You Can't Speak Your Mind at Work</title>
+    <meta name="description" content="Shop unique high-quality mugs with sarcastic quotes and cheeky one-liners. Perfect for adding personality to your daily coffee routine. Express yourself, one sip at a time.">
+    <meta name="keywords" content="funny mugs, sarcastic mugs, coffee mugs, dog lover gifts, humorous mugs, office gifts">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sarcasm Mugs - Express Yourself One Sip at a Time">
+    <meta property="og:description" content="Unique collection of high-quality mugs with sarcastic quotes and cheeky one-liners">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarcasmmugs.com">
+    <meta property="og:image" content="https://sarcasmmugs.com/favicon.svg">
+    <meta property="og:site_name" content="Sarcasm Mugs">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sarcasm Mugs - Express Yourself One Sip at a Time">
+    <meta name="twitter:description" content="Unique collection of high-quality mugs with sarcastic quotes and cheeky one-liners">
+    <meta name="twitter:image" content="https://sarcasmmugs.com/favicon.svg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sarcasmmugs.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- Structured Data - Organization & Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sarcasm Mugs",
+      "url": "https://sarcasmmugs.com",
+      "logo": "https://sarcasmmugs.com/favicon.svg",
+      "description": "Shop unique high-quality mugs with sarcastic quotes and cheeky one-liners",
+      "sameAs": [
+        "https://facebook.com/sarcasmmugs",
+        "https://twitter.com/sarcasmmugs",
+        "https://instagram.com/sarcasmmugs"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "email": "support@sarcasmmugs.com"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Sarcasm Mugs",
+      "url": "https://sarcasmmugs.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://sarcasmmugs.com/shop?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-teal': '#4ecdc4',
+                        'brand-yellow': '#f7b731',
+                        'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container-custom py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-gray-700 hover:text-brand-orange transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+                
+                <!-- Right side -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search -->
+                    <button id="searchBtn" class="text-gray-700 hover:text-brand-orange transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Cart -->
+                    <a href="/cart" class="relative text-gray-700 hover:text-brand-orange transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </a>
+                    
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-gray-700 hover:text-brand-orange transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="container-custom py-8">
+            <div class="bg-white rounded-lg p-6 max-w-2xl mx-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold">Search Products</h3>
+                    <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search for mugs..." class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-brand-charcoal to-gray-800 text-white py-20 md:py-32">
+        <div class="container-custom">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
+                        Sarcasm Mugs:<br>
+                        <span class="text-brand-orange">For When You Can't Speak Your Mind at Work</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Express your wit with high-quality mugs featuring the finest sarcastic quotes and cheeky one-liners. Because sometimes, your mug needs to do the talking.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="/shop" class="bg-brand-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors">
+                            Shop the Sass
+                        </a>
+                        <a href="#featured" class="bg-white text-brand-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                            View Collection
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block float-animation">
+                    <div class="text-9xl text-center">☕</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 bg-gray-50">
+        <div class="container-custom">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">✨</div>
+                    <h3 class="text-xl font-bold mb-2">Premium Quality</h3>
+                    <p class="text-gray-600">High-quality ceramic mugs that last</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold mb-2">Unique Designs</h3>
+                    <p class="text-gray-600">Exclusive sarcastic quotes you won't find elsewhere</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🚚</div>
+                    <h3 class="text-xl font-bold mb-2">Fast Shipping</h3>
+                    <p class="text-gray-600">Get your sass delivered quick</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="py-20">
+        <div class="container-custom">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-display font-bold mb-4">Featured Collection</h2>
+                <p class="text-xl text-gray-600">Our most popular sarcastic mugs</p>
+            </div>
+            
+            <div id="featuredProducts" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Products will be loaded here by JavaScript -->
+                <div class="col-span-full text-center py-12">
+                    <div class="spinner mx-auto"></div>
+                    <p class="mt-4 text-gray-600">Loading amazing mugs...</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="/shop" class="inline-block bg-brand-charcoal text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
+                    View All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-20 bg-gray-50">
+        <div class="container-custom">
+            <h2 class="text-4xl font-display font-bold text-center mb-12">Shop by Collection</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <a href="/shop?category=dog-lovers" class="group bg-white rounded-xl p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">🐕</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Dog Lovers</h3>
+                    <p class="text-gray-600">Paws-itively sarcastic</p>
+                </a>
+                <a href="/shop?category=work-office" class="group bg-white rounded-xl p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">💼</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Work & Office</h3>
+                    <p class="text-gray-600">Corporate sass</p>
+                </a>
+                <a href="/shop?category=coffee-lovers" class="group bg-white rounded-xl p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">☕</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Coffee Lovers</h3>
+                    <p class="text-gray-600">Caffeinated comedy</p>
+                </a>
+                <a href="/shop?category=general-sarcasm" class="group bg-white rounded-xl p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">😏</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">General Sarcasm</h3>
+                    <p class="text-gray-600">Pure sass</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container-custom">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-display font-bold mb-6">About Sarcasm Mugs</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    Welcome to Sarcasm Mugs, the ultimate destination for those who love to express their wit with a touch of humor. We specialize in a unique collection of high-quality mugs adorned with the finest sarcastic quotes and cheeky one-liners.
+                </p>
+                <p class="text-lg text-gray-700">
+                    Our store is perfect for adding a dash of personality to your daily coffee routine. Whether you're looking to make a statement, gift a laugh, or simply enjoy a sip of your favorite beverage with a smile, Sarcasm Mugs has something for everyone.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container-custom">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-display font-bold mb-4">Latest from the Blog</h2>
+                <p class="text-xl text-gray-600">Coffee culture, gift guides, and sarcastic musings</p>
+            </div>
+            
+            <div id="blogCardsHome" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog cards will be loaded here by JavaScript -->
+                <div class="col-span-full text-center py-12">
+                    <div class="spinner mx-auto"></div>
+                    <p class="mt-4 text-gray-600">Loading blog posts...</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="/blog" class="inline-block bg-brand-charcoal text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
+                    Read More Articles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-white py-12">
+        <div class="container-custom">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
+                    <p class="text-gray-400">Express yourself, one sip at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/shop" class="hover:text-brand-orange transition-colors">All Products</a></li>
+                        <li><a href="/shop?category=dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop?category=work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                        <li><a href="/shop?category=coffee-lovers" class="hover:text-brand-orange transition-colors">Coffee Lovers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/faq" class="hover:text-brand-orange transition-colors">FAQ</a></li>
+                        <li><a href="/contact" class="hover:text-brand-orange transition-colors">Contact</a></li>
+                        <li><a href="/privacy" class="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-brand-orange transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-brand-orange transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <ul class="space-y-2 text-gray-400 mb-4">
+                        <li><a href="/shop/category/dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop/category/coffee-lovers" class="hover:text-brand-orange transition-colors">Coffee Lovers</a></li>
+                        <li><a href="/shop/category/work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                    </ul>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sarcasm Mugs. All rights reserved. | Made with ☕ and 😏</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

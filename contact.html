@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sarcasm Mugs | Get in Touch</title>
+    <meta name="description" content="Have a question or feedback? Contact Sarcasm Mugs. We're here to help with your order, product inquiries, or just to chat about coffee and sarcasm.">
+    <meta name="keywords" content="contact sarcasm mugs, customer support, mug help, order questions">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Us - Sarcasm Mugs">
+    <meta property="og:description" content="Get in touch with Sarcasm Mugs for support, questions, or feedback.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarcasmmugs.com/contact">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sarcasmmugs.com/contact">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-gray-700 hover:text-brand-orange transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+                <a href="/cart" class="relative text-gray-700 hover:text-brand-orange transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-brand-charcoal to-gray-800 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-5xl font-display font-bold mb-4">Get in Touch</h1>
+            <p class="text-xl text-gray-300">We'd love to hear from you! (No sarcasm, we mean it)</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-display font-bold mb-6">Send us a Message</h2>
+
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                                   placeholder="John Doe">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                                   placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+                            <select id="subject" name="subject" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
+                                <option value="">Select a subject</option>
+                                <option value="order">Order Question</option>
+                                <option value="product">Product Inquiry</option>
+                                <option value="shipping">Shipping & Delivery</option>
+                                <option value="return">Returns & Exchanges</option>
+                                <option value="custom">Custom Design Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="6" required
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                                      placeholder="Tell us what's on your mind..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                                class="w-full bg-brand-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div id="formMessage" class="hidden mt-4 p-4 rounded-lg"></div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-3xl mr-4">📧</div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Email</h4>
+                                    <p class="text-gray-600">support@sarcasmmugs.com</p>
+                                    <p class="text-sm text-gray-500 mt-1">We'll respond within 24-48 hours</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="text-3xl mr-4">⏰</div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Business Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 9am - 6pm EST</p>
+                                    <p class="text-gray-600">Weekend: Closed (we're sipping our own sarcastic mugs)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="text-3xl mr-4">💬</div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Social Media</h4>
+                                    <p class="text-gray-600">Follow us for daily doses of sass</p>
+                                    <div class="flex space-x-4 mt-2">
+                                        <a href="#" class="text-gray-600 hover:text-brand-orange transition-colors">Facebook</a>
+                                        <a href="#" class="text-gray-600 hover:text-brand-orange transition-colors">Instagram</a>
+                                        <a href="#" class="text-gray-600 hover:text-brand-orange transition-colors">Twitter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Link -->
+                    <div class="bg-brand-orange rounded-xl shadow-lg p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Quick Answers</h3>
+                        <p class="mb-4">Looking for quick answers? Check out our FAQ page!</p>
+                        <a href="/faq" class="inline-block bg-white text-brand-orange px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            View FAQ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
+                    <p class="text-gray-400">Express yourself, one sip at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/shop" class="hover:text-brand-orange transition-colors">All Products</a></li>
+                        <li><a href="/shop/category/dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop/category/work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/faq" class="hover:text-brand-orange transition-colors">FAQ</a></li>
+                        <li><a href="/contact" class="hover:text-brand-orange transition-colors">Contact</a></li>
+                        <li><a href="/privacy" class="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-brand-orange transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-brand-orange transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sarcasm Mugs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/cart.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formMessage = document.getElementById('formMessage');
+            const submitButton = e.target.querySelector('button[type="submit"]');
+
+            // Disable button
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // In a real implementation, you would send this to your backend
+                // For now, we'll simulate success
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                formMessage.className = 'mt-4 p-4 rounded-lg bg-green-100 text-green-800';
+                formMessage.textContent = 'Message sent successfully! We\'ll get back to you soon.';
+                formMessage.classList.remove('hidden');
+
+                // Reset form
+                e.target.reset();
+            } catch (error) {
+                formMessage.className = 'mt-4 p-4 rounded-lg bg-red-100 text-red-800';
+                formMessage.textContent = 'Failed to send message. Please try again or email us directly.';
+                formMessage.classList.remove('hidden');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
+        });
+    </script>
+</body>
+</html>

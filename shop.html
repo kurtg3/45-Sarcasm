@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Sarcastic Mugs | Sarcasm Mugs</title>
+    <meta name="description" content="Browse our collection of funny, sarcastic mugs. Perfect for dog lovers, coffee addicts, and office rebels. Find your perfect sarcastic mug today!">
+    <meta name="keywords" content="sarcastic mugs, funny mugs, coffee mugs, dog lover mugs, office mugs, gift mugs">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Shop Sarcastic Mugs | Sarcasm Mugs">
+    <meta property="og:description" content="Browse our collection of funny, sarcastic mugs. Perfect for dog lovers, coffee addicts, and office rebels.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarcasmmugs.com/shop">
+    <meta property="og:image" content="https://sarcasmmugs.com/favicon.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shop Sarcastic Mugs | Sarcasm Mugs">
+    <meta name="twitter:description" content="Browse our collection of funny, sarcastic mugs">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sarcasmmugs.com/shop">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-teal': '#4ecdc4',
+                        'brand-yellow': '#f7b731',
+                        'brand-charcoal': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header (same as index.html) -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange">Home</a>
+                    <a href="/shop" class="text-brand-orange font-semibold">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange">About</a>
+                </div>
+                <a href="/cart" class="relative text-gray-700 hover:text-brand-orange">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Shop Header -->
+    <section class="bg-brand-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-display font-bold mb-4">Shop All Mugs</h1>
+            <p class="text-xl text-gray-300">Find your perfect sarcastic companion</p>
+        </div>
+    </section>
+
+    <!-- Filters & Products -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-4 gap-8">
+                <!-- Sidebar Filters -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
+                        <h3 class="font-bold text-lg mb-4">Categories</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="category" value="all" checked class="mr-2">
+                                <span>All Products</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="category" value="dog-lovers" class="mr-2">
+                                <span>Dog Lovers</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="category" value="cat-lovers" class="mr-2">
+                                <span>Cat Lovers</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="category" value="work-office" class="mr-2">
+                                <span>Work & Office</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="category" value="coffee-lovers" class="mr-2">
+                                <span>Coffee Lovers</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="lg:col-span-3">
+                    <div class="flex justify-between items-center mb-6">
+                        <p class="text-gray-600"><span id="productCount">0</span> products</p>
+                        <select id="sortSelect" class="border rounded-lg px-4 py-2">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+
+                    <div id="productsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="col-span-full text-center py-12">
+                            <div class="spinner mx-auto"></div>
+                            <p class="mt-4 text-gray-600">Loading products...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/products.js"></script>
+    <style>
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #ff6b35;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</body>
+</html>

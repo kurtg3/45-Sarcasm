@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Shop Category | Sarcasm Mugs</title>
+    <meta name="description" id="pageDescription" content="Browse our collection of sarcastic mugs">
+    <meta name="keywords" id="pageKeywords" content="funny mugs, sarcastic mugs, coffee mugs">
+
+    <!-- Open Graph -->
+    <meta property="og:title" id="ogTitle" content="Shop Category | Sarcasm Mugs">
+    <meta property="og:description" id="ogDescription" content="Browse our collection of sarcastic mugs">
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="ogUrl" content="">
+    <meta property="og:image" content="/favicon.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitterTitle" content="Shop Category | Sarcasm Mugs">
+    <meta name="twitter:description" id="twitterDescription" content="Browse our collection of sarcastic mugs">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" id="canonical" href="">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-teal': '#4ecdc4',
+                        'brand-yellow': '#f7b731',
+                        'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" id="structuredData">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Shop Category",
+      "description": "Browse our collection of sarcastic mugs",
+      "url": ""
+    }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-brand-orange font-semibold">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/cart" class="relative text-gray-700 hover:text-brand-orange transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </a>
+                    <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="bg-white border-b" aria-label="Breadcrumb">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li><a href="/" class="text-gray-500 hover:text-brand-orange">Home</a></li>
+                <li class="text-gray-400">/</li>
+                <li><a href="/shop" class="text-gray-500 hover:text-brand-orange">Shop</a></li>
+                <li class="text-gray-400">/</li>
+                <li id="breadcrumbCategory" class="text-gray-900 font-medium">Category</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Category Header -->
+    <section class="bg-gradient-to-br from-brand-charcoal to-gray-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center mb-4">
+                <span id="categoryIcon" class="text-7xl">🛍️</span>
+            </div>
+            <h1 id="categoryTitle" class="text-4xl md:text-5xl font-display font-bold mb-4 text-center">Shop Category</h1>
+            <p id="categoryDescription" class="text-xl text-gray-300 text-center max-w-2xl mx-auto">Browse our collection</p>
+        </div>
+    </section>
+
+    <!-- Filters & Products -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <p class="text-gray-600"><span id="productCount">0</span> products found</p>
+                <select id="sortSelect" class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="col-span-full text-center py-12">
+                    <div class="spinner mx-auto"></div>
+                    <p class="mt-4 text-gray-600">Loading products...</p>
+                </div>
+            </div>
+
+            <!-- No products message -->
+            <div id="noProducts" class="hidden text-center py-12">
+                <div class="text-6xl mb-4">😕</div>
+                <h3 class="text-2xl font-bold mb-4">No products found</h3>
+                <p class="text-gray-600 mb-8">Try browsing our other categories</p>
+                <a href="/shop" class="inline-block bg-brand-orange text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors">
+                    View All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Categories -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-display font-bold text-center mb-12">Explore More Categories</h2>
+            <div class="grid md:grid-cols-4 gap-6" id="relatedCategories">
+                <a href="/shop/category/dog-lovers" class="group bg-gray-50 rounded-xl p-6 text-center hover:shadow-xl transition-all hover:-translate-y-1">
+                    <div class="text-6xl mb-4">🐕</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Dog Lovers</h3>
+                    <p class="text-gray-600">Paws-itively sarcastic</p>
+                </a>
+                <a href="/shop/category/work-office" class="group bg-gray-50 rounded-xl p-6 text-center hover:shadow-xl transition-all hover:-translate-y-1">
+                    <div class="text-6xl mb-4">💼</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Work & Office</h3>
+                    <p class="text-gray-600">Corporate sass</p>
+                </a>
+                <a href="/shop/category/coffee-lovers" class="group bg-gray-50 rounded-xl p-6 text-center hover:shadow-xl transition-all hover:-translate-y-1">
+                    <div class="text-6xl mb-4">☕</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Coffee Lovers</h3>
+                    <p class="text-gray-600">Caffeinated comedy</p>
+                </a>
+                <a href="/shop/category/general-sarcasm" class="group bg-gray-50 rounded-xl p-6 text-center hover:shadow-xl transition-all hover:-translate-y-1">
+                    <div class="text-6xl mb-4">😏</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">General Sarcasm</h3>
+                    <p class="text-gray-600">Pure sass</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
+                    <p class="text-gray-400">Express yourself, one sip at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/shop" class="hover:text-brand-orange transition-colors">All Products</a></li>
+                        <li><a href="/shop/category/dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop/category/work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                        <li><a href="/shop/category/coffee-lovers" class="hover:text-brand-orange transition-colors">Coffee Lovers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/faq" class="hover:text-brand-orange transition-colors">FAQ</a></li>
+                        <li><a href="/contact" class="hover:text-brand-orange transition-colors">Contact</a></li>
+                        <li><a href="/privacy" class="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-brand-orange transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-brand-orange transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sarcasm Mugs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/products.js"></script>
+    <script>
+        // Category metadata
+        const categoryData = {
+            'dog-lovers': {
+                title: 'Dog Lovers Mugs',
+                description: 'Paws-itively sarcastic mugs for dog lovers who appreciate a good laugh with their morning coffee.',
+                keywords: 'dog mugs, funny dog mugs, dog lover gifts, sarcastic dog mugs',
+                icon: '🐕'
+            },
+            'cat-lovers': {
+                title: 'Cat Lovers Mugs',
+                description: 'Purr-fectly sarcastic mugs for cat enthusiasts who love their feline friends and witty humor.',
+                keywords: 'cat mugs, funny cat mugs, cat lover gifts, sarcastic cat mugs',
+                icon: '🐱'
+            },
+            'work-office': {
+                title: 'Work & Office Mugs',
+                description: 'Bring some corporate sass to your desk with our collection of work-themed sarcastic mugs.',
+                keywords: 'office mugs, work mugs, funny office gifts, corporate humor mugs',
+                icon: '💼'
+            },
+            'coffee-lovers': {
+                title: 'Coffee Lovers Mugs',
+                description: 'For the coffee addicts who need their caffeine fix with a side of sarcasm.',
+                keywords: 'coffee mugs, funny coffee mugs, caffeine mugs, coffee lover gifts',
+                icon: '☕'
+            },
+            'general-sarcasm': {
+                title: 'General Sarcasm Mugs',
+                description: 'Pure, unfiltered sarcasm for those who speak fluent sass.',
+                keywords: 'sarcastic mugs, funny mugs, sarcasm gifts, witty mugs',
+                icon: '😏'
+            }
+        };
+
+        // Get category from URL
+        function getCategoryFromURL() {
+            const path = window.location.pathname;
+            const parts = path.split('/');
+            return parts[parts.length - 1] || parts[parts.length - 2];
+        }
+
+        // Initialize page
+        function initializePage() {
+            const category = getCategoryFromURL();
+            const data = categoryData[category] || {
+                title: 'Shop Category',
+                description: 'Browse our collection of sarcastic mugs',
+                keywords: 'funny mugs, sarcastic mugs',
+                icon: '🛍️'
+            };
+
+            // Update SEO meta tags
+            document.getElementById('pageTitle').textContent = `${data.title} | Sarcasm Mugs`;
+            document.getElementById('pageDescription').content = data.description;
+            document.getElementById('pageKeywords').content = data.keywords;
+
+            // Update Open Graph
+            document.getElementById('ogTitle').content = `${data.title} | Sarcasm Mugs`;
+            document.getElementById('ogDescription').content = data.description;
+            document.getElementById('ogUrl').content = window.location.href;
+
+            // Update Twitter Card
+            document.getElementById('twitterTitle').content = `${data.title} | Sarcasm Mugs`;
+            document.getElementById('twitterDescription').content = data.description;
+
+            // Update canonical
+            document.getElementById('canonical').href = window.location.href;
+
+            // Update structured data
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": data.title,
+                "description": data.description,
+                "url": window.location.href
+            };
+            document.getElementById('structuredData').textContent = JSON.stringify(structuredData, null, 2);
+
+            // Update page content
+            document.getElementById('categoryIcon').textContent = data.icon;
+            document.getElementById('categoryTitle').textContent = data.title;
+            document.getElementById('categoryDescription').textContent = data.description;
+            document.getElementById('breadcrumbCategory').textContent = data.title;
+
+            // Load products for this category
+            loadCategoryProducts(category);
+        }
+
+        // Load products
+        async function loadCategoryProducts(category) {
+            try {
+                const response = await fetch(`/api/products?category=${category}`);
+                const result = await response.json();
+
+                const productsGrid = document.getElementById('productsGrid');
+                const noProducts = document.getElementById('noProducts');
+
+                if (result.success && result.data && result.data.length > 0) {
+                    document.getElementById('productCount').textContent = result.data.length;
+                    productsGrid.innerHTML = result.data.map(product => `
+                        <a href="/product/${product.id}" class="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="aspect-square bg-gray-100 overflow-hidden">
+                                <img src="${product.images[0]?.src || '/placeholder.jpg'}"
+                                     alt="${product.title}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                     loading="lazy">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-lg mb-2 group-hover:text-brand-orange transition-colors">${product.title}</h3>
+                                <p class="text-brand-orange font-bold text-xl">$${(product.variants[0]?.price / 100).toFixed(2)}</p>
+                            </div>
+                        </a>
+                    `).join('');
+                } else {
+                    productsGrid.classList.add('hidden');
+                    noProducts.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productsGrid').innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-red-500">Failed to load products. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage();
+            updateCartCount();
+        });
+    </script>
+
+    <style>
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #ff6b35;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</body>
+</html>

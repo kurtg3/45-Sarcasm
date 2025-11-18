@@ -1,0 +1,23 @@
+# Robots.txt for Sarcasm Mugs
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /server/
+Disallow: /assets/js/
+Disallow: /node_modules/
+
+# Allow specific API endpoints for SEO
+Allow: /api/products
+Allow: /api/blog
+
+# Sitemaps
+Sitemap: https://sarcasmmugs.com/sitemap.xml
+Sitemap: https://sarcasmmugs.com/sitemap-products.xml
+Sitemap: https://sarcasmmugs.com/sitemap-blog.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1

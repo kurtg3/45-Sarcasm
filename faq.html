@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Sarcasm Mugs | Frequently Asked Questions</title>
+    <meta name="description" content="Find answers to frequently asked questions about Sarcasm Mugs. Learn about ordering, shipping, returns, product care, and more.">
+    <meta name="keywords" content="FAQ, frequently asked questions, sarcasm mugs help, customer support, shipping info">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="FAQ - Sarcasm Mugs">
+    <meta property="og:description" content="Find answers to frequently asked questions about Sarcasm Mugs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarcasmmugs.com/faq">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="FAQ - Sarcasm Mugs">
+    <meta name="twitter:description" content="Find answers to frequently asked questions about Sarcasm Mugs.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sarcasmmugs.com/faq">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-teal': '#4ecdc4',
+                        'brand-yellow': '#f7b731',
+                        'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "name": "Frequently Asked Questions",
+      "description": "Frequently asked questions about Sarcasm Mugs",
+      "url": "https://sarcasmmugs.com/faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does shipping take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Processing takes 3-5 business days. Standard shipping is 5-10 business days, expedited is 2-5 business days, and express is 1-3 business days."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is your return policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We accept returns for defective, damaged, or incorrect products within 7 days of delivery. Due to our print-on-demand model, we cannot accept returns for items in perfect condition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the mugs dishwasher safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend hand washing to preserve the design quality. If using a dishwasher, place on the top rack and use a gentle cycle."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-gray-700 hover:text-brand-orange transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+                <a href="/cart" class="relative text-gray-700 hover:text-brand-orange transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-brand-charcoal to-gray-800 text-white py-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-display font-bold mb-6">Frequently Asked Questions</h1>
+            <p class="text-xl md:text-2xl text-gray-300">Got Questions? We've Got Answers (Probably)</p>
+        </div>
+    </section>
+
+    <!-- FAQ Categories Navigation -->
+    <section class="py-8 bg-white shadow-sm sticky top-16 z-40">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#ordering" class="px-4 py-2 bg-gray-100 hover:bg-brand-orange hover:text-white rounded-lg transition-colors">Ordering</a>
+                <a href="#shipping" class="px-4 py-2 bg-gray-100 hover:bg-brand-orange hover:text-white rounded-lg transition-colors">Shipping</a>
+                <a href="#returns" class="px-4 py-2 bg-gray-100 hover:bg-brand-orange hover:text-white rounded-lg transition-colors">Returns</a>
+                <a href="#product-care" class="px-4 py-2 bg-gray-100 hover:bg-brand-orange hover:text-white rounded-lg transition-colors">Product Care</a>
+                <a href="#payment" class="px-4 py-2 bg-gray-100 hover:bg-brand-orange hover:text-white rounded-lg transition-colors">Payment</a>
+                <a href="#other" class="px-4 py-2 bg-gray-100 hover:bg-brand-orange hover:text-white rounded-lg transition-colors">Other</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="py-20">
+        <div class="max-w-4xl mx-auto px-4">
+
+            <!-- Ordering Process -->
+            <div id="ordering" class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-8 text-brand-charcoal flex items-center">
+                    <span class="text-4xl mr-3">🛒</span>
+                    Ordering Process
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How do I place an order?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Ordering is simple! Browse our collection, select your favorite mug, choose your size and quantity, and click "Add to Cart." When you're ready, proceed to checkout, enter your shipping and payment information, and complete your order. You'll receive a confirmation email once your order is placed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Can I modify or cancel my order after placing it?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Because we use print-on-demand production, orders begin processing immediately after placement. This means we have a very short window to make changes.
+                            </p>
+                            <p class="text-gray-700">
+                                <strong>To modify or cancel:</strong> Contact us at <a href="mailto:support@sarcasmmugs.com" class="text-brand-orange hover:underline">support@sarcasmmugs.com</a> as soon as possible. If production hasn't started, we may be able to help. Once printing begins, we cannot make changes or cancel the order.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Do I need to create an account to order?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                No, you can check out as a guest! However, creating an account allows you to track orders, save your shipping information for faster checkout, and view your order history. Plus, you'll be first to know about new designs and special offers!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">What sizes do the mugs come in?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Our mugs are available in standard 11 oz and large 15 oz sizes. Some designs may only be available in specific sizes - check the product page for availability. Both sizes are made from high-quality ceramic and feature the same vibrant printing quality.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping & Delivery -->
+            <div id="shipping" class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-8 text-brand-charcoal flex items-center">
+                    <span class="text-4xl mr-3">📦</span>
+                    Shipping & Delivery
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How long does shipping take?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                <strong>Processing Time:</strong> 3-5 business days (this is when we custom-print your mug)
+                            </p>
+                            <p class="text-gray-700 mb-3"><strong>Shipping Times:</strong></p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4 mb-3">
+                                <li><strong>Standard Shipping:</strong> 5-10 business days</li>
+                                <li><strong>Expedited Shipping:</strong> 2-5 business days</li>
+                                <li><strong>Express Shipping:</strong> 1-3 business days</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                <em>Note: Processing time is separate from shipping time. Total delivery time = Processing (3-5 days) + Shipping time.</em>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How much does shipping cost?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Shipping costs are calculated at checkout based on your location and selected shipping method. We offer competitive rates and occasionally run free shipping promotions!
+                            </p>
+                            <p class="text-gray-700">
+                                <strong>Typical Rates (US domestic):</strong> Standard shipping starts at $4.99, with faster options available for an additional fee.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Do you ship internationally?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Yes! We ship to many countries worldwide. International shipping times vary by location, typically 10-20 business days plus processing time.
+                            </p>
+                            <p class="text-gray-700">
+                                <strong>Important:</strong> International customers are responsible for any customs duties, import taxes, or fees charged by their country. These charges are not included in our shipping costs and are the customer's responsibility.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Can I track my order?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Absolutely! Once your order ships, you'll receive a shipping confirmation email with a tracking number. You can use this number to track your package through the carrier's website. If you have an account, you can also view tracking information in your order history.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">What if my package is lost or damaged in transit?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                If your tracking shows the package as delivered but you haven't received it, first check with neighbors and household members, and look around your property (sometimes carriers leave packages in unexpected places).
+                            </p>
+                            <p class="text-gray-700">
+                                If you still can't locate it after 48 hours, or if your package arrives damaged, contact us at <a href="mailto:support@sarcasmmugs.com" class="text-brand-orange hover:underline">support@sarcasmmugs.com</a> with your order number and photos (if damaged). We'll work with you to resolve the issue.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Returns & Exchanges -->
+            <div id="returns" class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-8 text-brand-charcoal flex items-center">
+                    <span class="text-4xl mr-3">↩️</span>
+                    Returns & Exchanges
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">What is your return policy?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Due to the custom, print-on-demand nature of our products, we can only accept returns in these cases:
+                            </p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-3">
+                                <li><strong>Defective or damaged products:</strong> Contact us within 7 days of delivery with photos</li>
+                                <li><strong>Incorrect product:</strong> If you received the wrong item, contact us within 7 days</li>
+                                <li><strong>Significant printing errors:</strong> Major defects in the design print quality</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                We cannot accept returns for products in perfect condition if you simply changed your mind, or for minor color variations due to screen display differences.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How do I initiate a return or exchange?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Contact our support team at <a href="mailto:support@sarcasmmugs.com" class="text-brand-orange hover:underline">support@sarcasmmugs.com</a> within 7 days of receiving your order. Please include:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4 mb-3">
+                                <li>Your order number</li>
+                                <li>Photos of the defect or damage</li>
+                                <li>Description of the issue</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                We'll review your request and respond within 1-2 business days with next steps.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How long do refunds take?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Once your return is approved, refunds are processed within 5-10 business days to your original payment method. You'll receive an email confirmation when the refund is processed. Please allow additional time for your bank to process the refund (typically 3-5 business days).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Can I exchange my mug for a different design?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Unfortunately, we cannot exchange mugs simply because you prefer a different design. Since each mug is custom-printed for your order, we cannot accept exchanges unless there's a defect or error with your product. If you'd like a different design, you'll need to place a new order.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Care -->
+            <div id="product-care" class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-8 text-brand-charcoal flex items-center">
+                    <span class="text-4xl mr-3">✨</span>
+                    Product Care
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Are the mugs dishwasher safe?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                While our mugs can technically go in the dishwasher, <strong>we strongly recommend hand washing</strong> to preserve the design quality and extend the life of your mug.
+                            </p>
+                            <p class="text-gray-700">
+                                If you do use a dishwasher, place the mug on the top rack and use a gentle cycle with mild detergent. Avoid high heat settings.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Can I microwave the mugs?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Yes! Our mugs are microwave-safe. You can safely reheat your coffee, tea, or hot chocolate. However, avoid extremely long heating times and always use caution when removing hot mugs from the microwave.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How should I care for my mug to make it last?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3"><strong>Best practices for long-lasting mugs:</strong></p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4 mb-3">
+                                <li>Hand wash with mild soap and warm water</li>
+                                <li>Use a soft sponge (avoid abrasive scrubbers)</li>
+                                <li>Dry with a soft cloth</li>
+                                <li>Avoid soaking for extended periods</li>
+                                <li>Store in a safe place where it won't get knocked over</li>
+                                <li>Don't use harsh chemicals or bleach-based cleaners</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                With proper care, your sarcastic masterpiece will last for years!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Will the design fade or peel?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Our mugs are printed using high-quality, professional-grade printing technology. When properly cared for (hand washing, avoiding abrasive cleaners), the designs are very durable and should not fade or peel. If you experience any issues with design quality, contact us - this would be covered under our quality guarantee!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div id="payment" class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-8 text-brand-charcoal flex items-center">
+                    <span class="text-4xl mr-3">💳</span>
+                    Payment Methods
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">What payment methods do you accept?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">We accept all major payment methods through our secure payment processor, Stripe:</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4 mb-3">
+                                <li>Visa, Mastercard, American Express, Discover</li>
+                                <li>Debit cards</li>
+                                <li>Apple Pay</li>
+                                <li>Google Pay</li>
+                                <li>Other digital wallets</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                All payments are processed securely, and we never store your full credit card information.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Is it safe to enter my payment information?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Absolutely! We use Stripe, one of the world's most trusted payment processors. All payment data is encrypted using SSL/TLS technology and processed according to PCI DSS standards.
+                            </p>
+                            <p class="text-gray-700">
+                                We never see or store your full credit card details - they go directly to Stripe's secure servers. Your security is our top priority!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">When will my card be charged?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Your payment method is charged immediately when you complete your order. Since we use print-on-demand manufacturing, production begins right away, so the charge is processed at the time of purchase.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Do you offer payment plans or buy now, pay later options?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                Currently, we require full payment at the time of purchase. However, we occasionally offer promotional discount codes and sales - sign up for our newsletter to be notified of special offers!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Questions -->
+            <div id="other" class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-8 text-brand-charcoal flex items-center">
+                    <span class="text-4xl mr-3">❓</span>
+                    Other Questions
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Can I request a custom design?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Currently, we only offer the designs available in our shop. We're a curated collection of the best sarcastic quotes and witty one-liners, and we're constantly adding new designs!
+                            </p>
+                            <p class="text-gray-700">
+                                Have a design idea? Send it to <a href="mailto:ideas@sarcasmmugs.com" class="text-brand-orange hover:underline">ideas@sarcasmmugs.com</a> - we love hearing from our customers and may feature your suggestion in a future collection!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Do you offer bulk or wholesale pricing?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                For bulk orders (typically 20+ mugs), please contact us at <a href="mailto:wholesale@sarcasmmugs.com" class="text-brand-orange hover:underline">wholesale@sarcasmmugs.com</a> with details about your needs. We'd be happy to discuss pricing and options for large orders!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Do you have a physical store?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700">
+                                We're exclusively online! This allows us to offer competitive prices and a wider selection of designs. Plus, you can shop from the comfort of your couch (probably while drinking from your current, less sarcastic mug).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">How can I stay updated on new designs and promotions?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">Great question! Here's how to stay in the loop:</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4 mb-3">
+                                <li>Sign up for our newsletter (footer of any page)</li>
+                                <li>Follow us on social media @SarcasmMugs</li>
+                                <li>Create an account to receive personalized updates</li>
+                                <li>Check our blog for announcements and mug care tips</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                We promise not to spam you - just quality sarcasm and occasional special offers!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors flex justify-between items-center faq-toggle">
+                            <span class="font-semibold text-lg">Are your mugs environmentally friendly?</span>
+                            <span class="text-2xl text-brand-orange">+</span>
+                        </button>
+                        <div class="px-6 pb-4 hidden faq-answer">
+                            <p class="text-gray-700 mb-3">
+                                Our print-on-demand model is inherently more sustainable than traditional manufacturing because:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4 mb-3">
+                                <li>No excess inventory or waste from unsold products</li>
+                                <li>Products are only made when ordered</li>
+                                <li>Reduced warehouse storage needs</li>
+                                <li>Mugs are reusable, reducing disposable cup waste</li>
+                            </ul>
+                            <p class="text-gray-700">
+                                We're committed to sustainable practices and continuously look for ways to reduce our environmental impact!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still Have Questions -->
+            <div class="bg-gradient-to-br from-brand-charcoal to-gray-800 text-white rounded-2xl p-12 text-center">
+                <h2 class="text-3xl font-display font-bold mb-4">Still Have Questions?</h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    We're here to help! Our support team is ready to answer any questions you might have.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/contact" class="bg-brand-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors inline-flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Contact Us
+                    </a>
+                    <a href="mailto:support@sarcasmmugs.com" class="bg-white text-brand-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                        support@sarcasmmugs.com
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
+                    <p class="text-gray-400">Express yourself, one sip at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/shop" class="hover:text-brand-orange transition-colors">All Products</a></li>
+                        <li><a href="/shop/category/dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop/category/work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                        <li><a href="/shop/category/coffee-lovers" class="hover:text-brand-orange transition-colors">Coffee Lovers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/faq" class="hover:text-brand-orange transition-colors">FAQ</a></li>
+                        <li><a href="/contact" class="hover:text-brand-orange transition-colors">Contact</a></li>
+                        <li><a href="/privacy" class="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-brand-orange transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-brand-orange transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sarcasm Mugs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/cart.js"></script>
+    <script>
+        // FAQ Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.faq-toggle');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('span:last-child');
+
+                    // Toggle answer visibility
+                    answer.classList.toggle('hidden');
+
+                    // Toggle icon
+                    if (answer.classList.contains('hidden')) {
+                        icon.textContent = '+';
+                    } else {
+                        icon.textContent = '−';
+                    }
+                });
+            });
+        });
+
+        // Smooth scroll for category navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 150; // Account for sticky header
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
