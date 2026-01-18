@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const compression = require('compression');
 
+// Import database
+const { initializeDatabase, cleanupExpiredCarts } = require('./config/database');
+
 // Import middleware
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 const { rateLimit } = require('./middleware/auth');
@@ -14,6 +17,7 @@ const { rateLimit } = require('./middleware/auth');
 const productsRoutes = require('./routes/products');
 const ordersRoutes = require('./routes/orders');
 const blogRoutes = require('./routes/blog');
+const cartRoutes = require('./routes/cart');
 const sitemapRoutes = require('./routes/sitemap');
 
 const app = express();
@@ -104,40 +108,108 @@ app.get('/api/health', (req, res) => {
 app.use('/api/products', productsRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/blog', blogRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Sitemap routes
 app.use('/', sitemapRoutes);
 
-// Webhook endpoint for Printify
-app.post('/api/webhooks/printify', express.json(), (req, res) => {
+// Stripe webhook endpoint (with signature verification)
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Order = require('./models/Order');
+
+app.post('/api/webhooks/stripe', express.raw({ type: 'application/json' }), async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!webhookSecret) {
+    console.warn('Stripe webhook secret not configured');
+    return res.status(500).json({ error: 'Webhook secret not configured' });
+  }
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+  } catch (err) {
+    console.error('Stripe webhook signature verification failed:', err.message);
+    return res.status(400).json({ error: `Webhook Error: ${err.message}` });
+  }
+
+  // Handle the event
+  try {
+    switch (event.type) {
+      case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object;
+        console.log('Payment succeeded:', paymentIntent.id);
+        // Update order payment status
+        if (paymentIntent.metadata?.orderId) {
+          await Order.updatePaymentStatus(paymentIntent.metadata.orderId, 'paid', paymentIntent.id);
+        }
+        break;
+
+      case 'payment_intent.payment_failed':
+        const failedPayment = event.data.object;
+        console.log('Payment failed:', failedPayment.id);
+        if (failedPayment.metadata?.orderId) {
+          await Order.updatePaymentStatus(failedPayment.metadata.orderId, 'failed', failedPayment.id);
+        }
+        break;
+
+      case 'checkout.session.completed':
+        const session = event.data.object;
+        console.log('Checkout completed:', session.id);
+        break;
+
+      default:
+        console.log(`Unhandled Stripe event type: ${event.type}`);
+    }
+  } catch (error) {
+    console.error('Error processing Stripe webhook:', error);
+  }
+
+  res.json({ received: true });
+});
+
+// Printify webhook endpoint
+app.post('/api/webhooks/printify', express.json(), async (req, res) => {
   const { type, resource } = req.body;
 
-  console.log('📦 Printify Webhook received:', type);
+  console.log('Printify Webhook received:', type);
 
-  switch (type) {
-    case 'order:created':
-      console.log('Order created:', resource.id);
-      break;
-    
-    case 'order:sent-to-production':
-      console.log('Order sent to production:', resource.id);
-      // You can send customer notification here
-      break;
-    
-    case 'order:shipment:created':
-      console.log('Shipment created:', resource.id);
-      const tracking = resource.shipments?.[0]?.tracking_number;
-      console.log('Tracking number:', tracking);
-      // Send tracking email to customer
-      break;
-    
-    case 'order:shipment:delivered':
-      console.log('Order delivered:', resource.id);
-      // Send delivery confirmation
-      break;
-    
-    default:
-      console.log('Unhandled webhook type:', type);
+  try {
+    switch (type) {
+      case 'order:created':
+        console.log('Order created:', resource.id);
+        break;
+
+      case 'order:sent-to-production':
+        console.log('Order sent to production:', resource.id);
+        await Order.updateByPrintifyId(resource.id, { status: 'processing' });
+        break;
+
+      case 'order:shipment:created':
+        console.log('Shipment created:', resource.id);
+        const tracking = resource.shipments?.[0]?.tracking_number;
+        const trackingUrl = resource.shipments?.[0]?.tracking_url;
+        if (tracking) {
+          await Order.updateByPrintifyId(resource.id, {
+            status: 'shipped',
+            tracking_number: tracking,
+            tracking_url: trackingUrl
+          });
+        }
+        break;
+
+      case 'order:shipment:delivered':
+        console.log('Order delivered:', resource.id);
+        await Order.updateByPrintifyId(resource.id, { status: 'delivered' });
+        break;
+
+      default:
+        console.log('Unhandled webhook type:', type);
+    }
+  } catch (error) {
+    console.error('Webhook processing error:', error);
   }
 
   res.status(200).json({ received: true });
@@ -204,45 +276,69 @@ app.use(notFoundHandler);
 // Error handler (must be last)
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`
-╔═══════════════════════════════════════════════════════╗
-║                                                       ║
-║           🎭 SARCASM MUGS API SERVER 🎭              ║
-║                                                       ║
-║   Server running on: http://localhost:${PORT}        ║
-║   Environment: ${process.env.NODE_ENV || 'development'.padEnd(36)}║
-║                                                       ║
-║   API Endpoints:                                      ║
-║   • GET  /api/health                                  ║
-║   • GET  /api/products                                ║
-║   • GET  /api/products/:id                            ║
-║   • POST /api/orders                                  ║
-║   • POST /api/shipping/calculate                      ║
-║   • GET  /api/blog/posts                              ║
-║   • POST /api/blog/posts (n8n)                        ║
-║                                                       ║
-╚═══════════════════════════════════════════════════════╝
-  `);
+// Initialize database and start server
+const startServer = async () => {
+  try {
+    // Initialize PostgreSQL database
+    if (process.env.DATABASE_URL) {
+      await initializeDatabase();
+      console.log('PostgreSQL database initialized');
 
-  // Check Printify configuration
-  if (!process.env.PRINTIFY_API_TOKEN || !process.env.PRINTIFY_SHOP_ID) {
-    console.warn(`
-⚠️  WARNING: Printify credentials not configured!
-Please set the following in your .env file:
-  - PRINTIFY_API_TOKEN
-  - PRINTIFY_SHOP_ID
-    `);
-  } else {
-    console.log('✅ Printify API configured');
-  }
+      // Clean up expired cart sessions every hour
+      setInterval(cleanupExpiredCarts, 60 * 60 * 1000);
+    } else {
+      console.warn('WARNING: DATABASE_URL not set - running without PostgreSQL');
+    }
 
-  if (!process.env.BLOG_API_KEY) {
-    console.warn('⚠️  WARNING: BLOG_API_KEY not set for n8n integration');
-  } else {
-    console.log('✅ Blog API configured for n8n');
+    app.listen(PORT, () => {
+      console.log(`
+=======================================================
+           SARCASM MUGS API SERVER
+=======================================================
+   Server running on: http://localhost:${PORT}
+   Environment: ${process.env.NODE_ENV || 'development'}
+
+   API Endpoints:
+   - GET  /api/health
+   - GET  /api/products
+   - GET  /api/products/:id
+   - POST /api/orders
+   - GET  /api/orders/:orderId
+   - GET  /api/orders/customer/:email
+   - POST /api/shipping/calculate
+   - GET  /api/blog/posts
+   - POST /api/blog/posts (n8n)
+   - GET  /api/cart
+   - POST /api/cart/items
+   - POST /api/cart/sync
+=======================================================
+      `);
+
+      // Check configuration
+      if (!process.env.PRINTIFY_API_TOKEN || !process.env.PRINTIFY_SHOP_ID) {
+        console.warn('WARNING: Printify credentials not configured');
+      } else {
+        console.log('Printify API configured');
+      }
+
+      if (!process.env.BLOG_API_KEY) {
+        console.warn('WARNING: BLOG_API_KEY not set for n8n integration');
+      } else {
+        console.log('Blog API configured for n8n');
+      }
+
+      if (!process.env.DATABASE_URL) {
+        console.warn('WARNING: DATABASE_URL not set');
+      } else {
+        console.log('PostgreSQL database connected');
+      }
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
   }
-});
+};
+
+startServer();
 
 module.exports = app;

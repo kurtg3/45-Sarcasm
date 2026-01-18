@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nUpdate web app with enhanced features and restructured codebase\n\n- Add MongoDB models and database configuration\n- Enhance order and blog controllers with improved functionality\n- Add cart routes for shopping functionality\n- Update frontend pages \\(index, product\\) with new features\n- Update package.json dependencies\n- Remove outdated documentation files \\(README, DEPLOYMENT, STRUCTURE\\)\n- Clean up start script\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

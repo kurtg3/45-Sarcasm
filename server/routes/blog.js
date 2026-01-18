@@ -9,7 +9,7 @@ router.get('/posts/:identifier', blogController.getPost);
 router.get('/categories', blogController.getCategories);
 
 // Protected routes (require API key for n8n)
-router.post('/posts', authenticateAPIKey, blogController.createPost);
+router.post('/posts', authenticateAPIKey, blogController.validation, blogController.createPost);
 router.put('/posts/:id', authenticateAPIKey, blogController.updatePost);
 router.delete('/posts/:id', authenticateAPIKey, blogController.deletePost);
 

@@ -5,16 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Product | Sarcasm Mugs</title>
     <meta name="description" id="pageDescription" content="Shop unique sarcastic mugs with high-quality printing and fast shipping.">
-    
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" id="ogTitle" content="Product | Sarcasm Mugs">
+    <meta property="og:description" id="ogDescription" content="Shop unique sarcastic mugs with high-quality printing and fast shipping.">
+    <meta property="og:image" id="ogImage" content="https://sarcasmmugs.com/favicon.svg">
+    <meta property="og:url" id="ogUrl" content="https://sarcasmmugs.com/product">
+    <meta property="og:site_name" content="Sarcasm Mugs">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitterTitle" content="Product | Sarcasm Mugs">
+    <meta name="twitter:description" id="twitterDescription" content="Shop unique sarcastic mugs with high-quality printing and fast shipping.">
+    <meta name="twitter:image" id="twitterImage" content="https://sarcasmmugs.com/favicon.svg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" id="canonicalUrl" href="https://sarcasmmugs.com/product">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <!-- Fonts -->
+
+    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://images-api.printify.com">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -34,6 +56,30 @@
                 }
             }
         }
+    </script>
+
+    <!-- Product Schema (dynamically updated) -->
+    <script type="application/ld+json" id="productSchema">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Sarcasm Mug",
+      "description": "High-quality ceramic mug with sarcastic quote",
+      "brand": {
+        "@type": "Brand",
+        "name": "Sarcasm Mugs"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "price": "0",
+        "seller": {
+          "@type": "Organization",
+          "name": "Sarcasm Mugs"
+        }
+      }
+    }
     </script>
 </head>
 <body class="font-sans bg-gray-50">
@@ -271,10 +317,54 @@
         // Display product
         function displayProduct(product) {
             currentProduct = product;
-            
-            // Update page title and meta
+
+            // Update page title and meta description
             document.getElementById('pageTitle').textContent = `${product.title} | Sarcasm Mugs`;
             document.getElementById('pageDescription').content = product.description;
+
+            // Update Open Graph meta tags
+            document.getElementById('ogTitle').content = `${product.title} | Sarcasm Mugs`;
+            document.getElementById('ogDescription').content = product.description;
+            document.getElementById('ogUrl').content = window.location.href;
+            if (product.images && product.images[0]) {
+                document.getElementById('ogImage').content = product.images[0].src;
+            }
+
+            // Update Twitter Card meta tags
+            document.getElementById('twitterTitle').content = `${product.title} | Sarcasm Mugs`;
+            document.getElementById('twitterDescription').content = product.description;
+            if (product.images && product.images[0]) {
+                document.getElementById('twitterImage').content = product.images[0].src;
+            }
+
+            // Update canonical URL
+            document.getElementById('canonicalUrl').href = window.location.href;
+
+            // Update Product Schema for SEO
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": product.title,
+                "description": product.description,
+                "image": product.images?.map(img => img.src) || [],
+                "sku": product.id,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Sarcasm Mugs"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": window.location.href,
+                    "availability": "https://schema.org/InStock",
+                    "priceCurrency": "USD",
+                    "price": product.price.toFixed(2),
+                    "seller": {
+                        "@type": "Organization",
+                        "name": "Sarcasm Mugs"
+                    }
+                }
+            };
+            document.getElementById('productSchema').textContent = JSON.stringify(schema);
 
             // Show featured badge if applicable
             if (product.featured) {

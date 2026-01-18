@@ -1,86 +1,52 @@
-const fs = require('fs').promises;
-const path = require('path');
+const BlogPost = require('../models/BlogPost');
+const { body, validationResult } = require('express-validator');
+const sanitizeHtml = require('sanitize-html');
 
-// Blog posts storage file
-const BLOG_FILE = path.join(__dirname, '../../data/blog-posts.json');
-
-// Ensure data directory exists
-const ensureDataDir = async () => {
-  const dir = path.dirname(BLOG_FILE);
-  try {
-    await fs.access(dir);
-  } catch {
-    await fs.mkdir(dir, { recursive: true });
-  }
+// Sanitize HTML content to prevent XSS
+const sanitizeContent = (content) => {
+  return sanitizeHtml(content, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'h1', 'h2', 'h3', 'iframe']),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      img: ['src', 'alt', 'title', 'width', 'height', 'loading'],
+      iframe: ['src', 'width', 'height', 'frameborder', 'allowfullscreen'],
+      a: ['href', 'target', 'rel'],
+      '*': ['class', 'id', 'style']
+    },
+    allowedIframeHostnames: ['www.youtube.com', 'youtube.com', 'player.vimeo.com']
+  });
 };
 
-// Read blog posts
-const readPosts = async () => {
-  try {
-    await ensureDataDir();
-    const data = await fs.readFile(BLOG_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    // If file doesn't exist, return empty array
-    if (error.code === 'ENOENT') {
-      return [];
-    }
-    throw error;
-  }
-};
-
-// Write blog posts
-const writePosts = async (posts) => {
-  await ensureDataDir();
-  await fs.writeFile(BLOG_FILE, JSON.stringify(posts, null, 2));
-};
-
-// Generate slug from title
-const slugify = (text) => {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-};
-
-// Generate unique ID
-const generateId = () => {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
-};
+// Validation rules for blog posts
+const blogValidation = [
+  body('title').trim().notEmpty().withMessage('Title is required').isLength({ max: 500 }),
+  body('content').trim().notEmpty().withMessage('Content is required'),
+  body('excerpt').optional().trim().isLength({ max: 500 }),
+  body('category').optional().trim().isLength({ max: 100 }),
+  body('meta_title').optional().trim().isLength({ max: 500 }),
+  body('meta_description').optional().trim().isLength({ max: 500 }),
+  body('author').optional().trim().isLength({ max: 255 })
+];
 
 const blogController = {
+  // Validation middleware
+  validation: blogValidation,
+
   // GET all blog posts
   getAllPosts: async (req, res, next) => {
     try {
-      const posts = await readPosts();
       const { page = 1, limit = 10, category } = req.query;
 
-      let filteredPosts = posts;
-
-      // Filter by category if provided
-      if (category) {
-        filteredPosts = posts.filter(p => p.category === category);
-      }
-
-      // Sort by published date (newest first)
-      filteredPosts.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-
-      // Pagination
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + parseInt(limit);
-      const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+      const result = await BlogPost.findAll({
+        page: parseInt(page),
+        limit: parseInt(limit),
+        category: category || null
+      });
 
       res.json({
         success: true,
-        data: paginatedPosts,
-        pagination: {
-          page: parseInt(page),
-          limit: parseInt(limit),
-          total: filteredPosts.length,
-          totalPages: Math.ceil(filteredPosts.length / limit)
-        }
+        data: result.posts,
+        pagination: result.pagination
       });
     } catch (error) {
       next(error);
@@ -91,11 +57,7 @@ const blogController = {
   getPost: async (req, res, next) => {
     try {
       const { identifier } = req.params;
-      const posts = await readPosts();
-
-      const post = posts.find(p => 
-        p.id === identifier || p.slug === identifier
-      );
+      const post = await BlogPost.findByIdOrSlug(identifier);
 
       if (!post) {
         return res.status(404).json({
@@ -113,9 +75,18 @@ const blogController = {
     }
   },
 
-  // POST create new blog post (for n8n)
+  // POST create new blog post (for n8n or admin)
   createPost: async (req, res, next) => {
     try {
+      // Check validation errors
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({
+          success: false,
+          errors: errors.array()
+        });
+      }
+
       const {
         title,
         content,
@@ -128,35 +99,20 @@ const blogController = {
         author
       } = req.body;
 
-      // Validate required fields
-      if (!title || !content) {
-        return res.status(400).json({
-          success: false,
-          error: 'Title and content are required'
-        });
-      }
+      // Sanitize HTML content
+      const sanitizedContent = sanitizeContent(content);
 
-      const posts = await readPosts();
-
-      // Create new post
-      const newPost = {
-        id: generateId(),
-        slug: slugify(title),
-        title,
-        content,
-        excerpt: excerpt || content.substring(0, 160) + '...',
-        featured_image: featured_image || '',
-        category: category || 'general',
+      const newPost = await BlogPost.create({
+        title: title.trim(),
+        content: sanitizedContent,
+        excerpt: excerpt ? excerpt.trim() : null,
+        featured_image,
+        category: category ? category.trim() : null,
         tags: tags || [],
-        meta_title: meta_title || title,
-        meta_description: meta_description || excerpt || '',
-        author: author || 'Sarcasm Mugs Team',
-        published_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      };
-
-      posts.push(newPost);
-      await writePosts(posts);
+        meta_title: meta_title ? meta_title.trim() : null,
+        meta_description: meta_description ? meta_description.trim() : null,
+        author: author ? author.trim() : null
+      });
 
       res.status(201).json({
         success: true,
@@ -164,6 +120,12 @@ const blogController = {
         message: 'Blog post created successfully'
       });
     } catch (error) {
+      if (error.code === '23505') {
+        return res.status(409).json({
+          success: false,
+          error: 'A post with this title already exists'
+        });
+      }
       next(error);
     }
   },
@@ -172,30 +134,21 @@ const blogController = {
   updatePost: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const updates = req.body;
+      const updates = { ...req.body };
 
-      const posts = await readPosts();
-      const postIndex = posts.findIndex(p => p.id === id);
+      // Sanitize content if being updated
+      if (updates.content) {
+        updates.content = sanitizeContent(updates.content);
+      }
 
-      if (postIndex === -1) {
+      const updatedPost = await BlogPost.update(id, updates);
+
+      if (!updatedPost) {
         return res.status(404).json({
           success: false,
           error: 'Post not found'
         });
       }
-
-      // Update post
-      const updatedPost = {
-        ...posts[postIndex],
-        ...updates,
-        id: posts[postIndex].id, // Preserve ID
-        published_at: posts[postIndex].published_at, // Preserve published date
-        updated_at: new Date().toISOString(),
-        slug: updates.title ? slugify(updates.title) : posts[postIndex].slug
-      };
-
-      posts[postIndex] = updatedPost;
-      await writePosts(posts);
 
       res.json({
         success: true,
@@ -211,18 +164,14 @@ const blogController = {
   deletePost: async (req, res, next) => {
     try {
       const { id } = req.params;
+      const deleted = await BlogPost.delete(id);
 
-      const posts = await readPosts();
-      const filteredPosts = posts.filter(p => p.id !== id);
-
-      if (filteredPosts.length === posts.length) {
+      if (!deleted) {
         return res.status(404).json({
           success: false,
           error: 'Post not found'
         });
       }
-
-      await writePosts(filteredPosts);
 
       res.json({
         success: true,
@@ -236,8 +185,7 @@ const blogController = {
   // GET categories
   getCategories: async (req, res, next) => {
     try {
-      const posts = await readPosts();
-      const categories = [...new Set(posts.map(p => p.category))];
+      const categories = await BlogPost.getCategories();
 
       res.json({
         success: true,
