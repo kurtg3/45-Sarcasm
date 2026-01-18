@@ -4,93 +4,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | Sarcasm Mugs</title>
-    
+    <meta name="description" content="Complete your order for sarcastic mugs. Secure checkout with fast shipping.">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = {theme: {extend: {colors: {'brand-orange': '#ff6b35','brand-charcoal': '#1a1a1a'}}}}</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#ff6b35',
+                        'brand-teal': '#4ecdc4',
+                        'brand-yellow': '#f7b731',
+                        'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-50">
-    <header class="bg-white shadow-md">
-        <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between">
-            <a href="/" class="flex items-center space-x-2">
-                <span class="text-3xl">☕</span>
-                <span class="text-2xl font-bold">Sarcasm Mugs</span>
-            </a>
+<body class="font-sans bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-gray-700 hover:text-brand-orange transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+
+                <!-- Right side -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart -->
+                    <a href="/cart" class="relative text-brand-orange">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </a>
+
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="/shop" class="text-gray-700 hover:text-brand-orange transition-colors">Shop</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <section class="py-12">
-        <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-4xl font-bold mb-8">Checkout</h1>
-            
-            <div class="bg-white rounded-lg shadow-md p-8">
+    <!-- Main Content -->
+    <main class="flex-grow py-8 md:py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-display font-bold mb-8">Checkout</h1>
+
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
                 <form id="checkoutForm">
                     <h2 class="text-2xl font-bold mb-6">Shipping Information</h2>
-                    
-                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label class="block text-sm font-medium mb-2">First Name</label>
-                            <input type="text" name="firstName" required class="w-full px-4 py-2 border rounded-lg">
+                            <input type="text" name="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Last Name</label>
-                            <input type="text" name="lastName" required class="w-full px-4 py-2 border rounded-lg">
+                            <input type="text" name="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                         </div>
                     </div>
-                    
+
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-2">Email</label>
-                        <input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg">
+                        <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                     </div>
-                    
+
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-2">Address</label>
-                        <input type="text" name="address1" required class="w-full px-4 py-2 border rounded-lg">
+                        <input type="text" name="address1" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                     </div>
-                    
-                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">City</label>
-                            <input type="text" name="city" required class="w-full px-4 py-2 border rounded-lg">
+                            <input type="text" name="city" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">State</label>
-                            <input type="text" name="state" required class="w-full px-4 py-2 border rounded-lg">
+                            <input type="text" name="state" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">ZIP</label>
-                            <input type="text" name="zip" required class="w-full px-4 py-2 border rounded-lg">
+                            <input type="text" name="zip" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                         </div>
                     </div>
-                    
+
                     <div class="mb-6">
                         <label class="block text-sm font-medium mb-2">Country</label>
-                        <select name="country" required class="w-full px-4 py-2 border rounded-lg">
+                        <select name="country" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent">
                             <option value="US">United States</option>
                             <option value="CA">Canada</option>
                             <option value="GB">United Kingdom</option>
                         </select>
                     </div>
-                    
+
                     <div class="bg-gray-50 p-6 rounded-lg mb-6">
                         <h3 class="font-bold text-lg mb-4">Order Summary</h3>
                         <div id="orderSummary"></div>
                     </div>
-                    
-                    <button type="submit" class="w-full bg-brand-orange text-white py-4 rounded-lg font-bold text-lg hover:bg-orange-600">
+
+                    <button type="submit" class="w-full bg-brand-orange text-white py-4 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors">
                         Place Order
                     </button>
                 </form>
             </div>
         </div>
-    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
+                    <p class="text-gray-400">Express yourself, one sip at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/shop" class="hover:text-brand-orange transition-colors">All Products</a></li>
+                        <li><a href="/shop?category=dog-lovers" class="hover:text-brand-orange transition-colors">Dog Lovers</a></li>
+                        <li><a href="/shop?category=work-office" class="hover:text-brand-orange transition-colors">Work & Office</a></li>
+                        <li><a href="/shop?category=coffee-lovers" class="hover:text-brand-orange transition-colors">Coffee Lovers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/faq" class="hover:text-brand-orange transition-colors">FAQ</a></li>
+                        <li><a href="/contact" class="hover:text-brand-orange transition-colors">Contact</a></li>
+                        <li><a href="/privacy" class="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-brand-orange transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/about" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-brand-orange transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sarcasm Mugs. All rights reserved. | Made with ☕ and 😏</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="/assets/js/cart.js"></script>
     <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Load order summary
         document.getElementById('orderSummary').innerHTML = `
             <div class="space-y-2">
                 ${getCart().map(item => `
@@ -105,12 +215,16 @@
                 </div>
             </div>
         `;
-        
+
+        // Update cart count
+        updateCartCount();
+
+        // Form submission
         document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData);
-            
+
             // In production, integrate Stripe here
             alert('Demo: In production, this would process payment and create order via Printify API');
             console.log('Order data:', { ...data, cart: getCart() });
