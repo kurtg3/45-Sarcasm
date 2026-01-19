@@ -30,6 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
     <script>
         tailwind.config = {
             theme: {
@@ -39,6 +40,10 @@
                         'brand-teal': '#4ecdc4',
                         'brand-yellow': '#f7b731',
                         'brand-charcoal': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Poppins', 'sans-serif'],
                     }
                 }
             }
@@ -46,22 +51,34 @@
     </script>
 </head>
 <body class="font-sans bg-gray-50">
-    <!-- Header (same as index.html) -->
+    <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <nav class="container-custom py-4">
             <div class="flex items-center justify-between">
+                <!-- Logo -->
                 <a href="/" class="flex items-center space-x-2">
                     <span class="text-3xl">☕</span>
                     <span class="text-2xl font-display font-bold text-brand-charcoal">Sarcasm Mugs</span>
                 </a>
+
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-700 hover:text-brand-orange">Home</a>
+                    <a href="/" class="text-gray-700 hover:text-brand-orange transition-colors">Home</a>
                     <a href="/shop" class="text-brand-orange font-semibold">Shop</a>
-                    <a href="/blog" class="text-gray-700 hover:text-brand-orange">Blog</a>
-                    <a href="/about" class="text-gray-700 hover:text-brand-orange">About</a>
+                    <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
+                    <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                    <a href="/contact" class="text-gray-700 hover:text-brand-orange transition-colors">Contact</a>
                 </div>
+
                 <!-- Right side -->
                 <div class="flex items-center space-x-4">
+                    <!-- Search -->
+                    <button id="searchBtn" class="text-gray-700 hover:text-brand-orange transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+
                     <!-- Cart -->
                     <a href="/cart" class="relative text-gray-700 hover:text-brand-orange transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,14 +103,33 @@
                     <a href="/shop" class="text-brand-orange font-semibold">Shop</a>
                     <a href="/blog" class="text-gray-700 hover:text-brand-orange transition-colors">Blog</a>
                     <a href="/about" class="text-gray-700 hover:text-brand-orange transition-colors">About</a>
+                    <a href="/contact" class="text-gray-700 hover:text-brand-orange transition-colors">Contact</a>
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- Search Overlay -->
+    <div id="searchOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="container-custom py-8">
+            <div class="bg-white rounded-lg p-6 max-w-2xl mx-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold">Search Products</h3>
+                    <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search for mugs..." class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Shop Header -->
     <section class="bg-brand-charcoal text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container-custom">
             <h1 class="text-4xl font-display font-bold mb-4">Shop All Mugs</h1>
             <p class="text-xl text-gray-300">Find your perfect sarcastic companion</p>
         </div>
@@ -101,7 +137,7 @@
 
     <!-- Filters & Products -->
     <section class="py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container-custom">
             <div class="grid lg:grid-cols-4 gap-8">
                 <!-- Sidebar Filters -->
                 <div class="lg:col-span-1">
@@ -157,7 +193,7 @@
 
     <!-- Footer -->
     <footer class="bg-brand-charcoal text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container-custom">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">Sarcasm Mugs</h3>
@@ -207,13 +243,8 @@
     </footer>
 
     <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script src="/assets/js/products.js"></script>
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-    </script>
     <style>
         .spinner {
             border: 3px solid #f3f3f3;
